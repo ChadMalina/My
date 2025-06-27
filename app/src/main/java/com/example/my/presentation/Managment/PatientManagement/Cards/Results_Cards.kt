@@ -20,25 +20,16 @@ import com.example.my.ui.theme.Teal80
 
 @Composable
 fun ResultsCard(
-    Submissions: Submissions,
-    userName: String,
-    reportfileURL: String,
-    onDownloadClick: () -> Unit
+    Submissions: Submissions, userName: String, reportfileURL: String, onDownloadClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp),
-        colors = CardDefaults.cardColors(
+            .height(120.dp), colors = CardDefaults.cardColors(
             containerColor = Color(
-                red = 255,
-                green = 255,
-                blue = 255,
-                alpha = 143
+                red = 255, green = 255, blue = 255, alpha = 143
             ),
-        ),
-        shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(8.dp)
+        ), shape = RoundedCornerShape(20.dp), elevation = CardDefaults.cardElevation(8.dp)
     ) {
 
         Row(
@@ -77,12 +68,10 @@ fun ResultsCard(
 
             Button(
                 onClick = onDownloadClick,
-                modifier = Modifier
-                    .padding(end = 16.dp),
+                modifier = Modifier.padding(end = 16.dp),
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent,
-                    contentColor = Color.Black
+                    containerColor = Color.Transparent, contentColor = Color.Black
                 ),
                 contentPadding = PaddingValues(8.dp)
             ) {

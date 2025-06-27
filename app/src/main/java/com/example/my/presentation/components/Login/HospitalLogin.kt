@@ -45,7 +45,7 @@ import com.example.my.Data.Auth.HospitalAuthViewModel
 fun HospitalLogin(
     navController: NavHostController,
     HospitalAuthViewModel: HospitalAuthViewModel
-){
+) {
     Column(
         modifier = Modifier
             .paint(
@@ -56,7 +56,6 @@ fun HospitalLogin(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
 
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -75,10 +74,10 @@ fun HospitalLogin(
 
         OutlinedTextField(
             value = hospitalemail,
-            onValueChange = {hospitalemail = it},
-            label = { Text(text = "School Email", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { hospitalemail = it },
+            label = { Text(text = "School Email", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "")},
+            leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
@@ -90,8 +89,8 @@ fun HospitalLogin(
 
         OutlinedTextField(
             value = hospitalpassword,
-            onValueChange = {hospitalpassword = it},
-            label = { Text(text = "Password", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { hospitalpassword = it },
+            label = { Text(text = "Password", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
             modifier = Modifier
@@ -111,7 +110,14 @@ fun HospitalLogin(
 
         Button(
             onClick = { HospitalAuthViewModel.hospitalsignin(hospitalemail, hospitalpassword) },
-            colors = ButtonDefaults.buttonColors(Color(red = 103, green = 58, blue = 183, alpha = 255),),
+            colors = ButtonDefaults.buttonColors(
+                Color(
+                    red = 103,
+                    green = 58,
+                    blue = 183,
+                    alpha = 255
+                ),
+            ),
             shape = RoundedCornerShape(5.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -124,11 +130,7 @@ fun HospitalLogin(
         }
 
 
-
     }
-
-
-
 
 
 }

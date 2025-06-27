@@ -47,7 +47,10 @@ fun ManageCreatedResults(
     var selectedToDelete by remember { mutableStateOf<Submissions?>(null) }
 
     LaunchedEffect(submissionViewModel.createdSubmissions.size) {
-        Log.d("Manage Results", "Created results count: ${submissionViewModel.createdSubmissions.size}")
+        Log.d(
+            "Manage Results",
+            "Created results count: ${submissionViewModel.createdSubmissions.size}"
+        )
         submissionViewModel.createdSubmissions.forEach {
             Log.d("Manage Results", "submission title: ${it.submissiontitle}, doctor: ${it.doctor}")
         }
@@ -58,7 +61,10 @@ fun ManageCreatedResults(
     }
 
     LaunchedEffect(submissionViewModel.createdSubmissions.size) {
-        Log.d("Manage Results", "Rendering ${submissionViewModel.createdSubmissions.size} submissions")
+        Log.d(
+            "Manage Results",
+            "Rendering ${submissionViewModel.createdSubmissions.size} submissions"
+        )
     }
 
 
@@ -97,23 +103,23 @@ fun ManageCreatedResults(
                     submission = submissions,
                     navController = navController,
                     onReadClick = { selected = submissions },
-                    onDeleteClick = {selected},
+                    onDeleteClick = { selected },
 
-                )
+                    )
             }
         }
 
         // 2️⃣ Read / Download dialog
         selected?.let { a ->
             DownloadSubmissionDetails(
-                submissiontitle      = a.submissiontitle,
+                submissiontitle = a.submissiontitle,
                 submissiondescription = a.submissiondescription,
-                createdTime      = a.createdTime,
-                doctor           = a.doctor,
-                divisionName        = a.divisionName,
-                fileURL          = a.fileURL,
-                context          = LocalContext.current,
-                onClose          = { selected = null }
+                createdTime = a.createdTime,
+                doctor = a.doctor,
+                divisionName = a.divisionName,
+                fileURL = a.fileURL,
+                context = LocalContext.current,
+                onClose = { selected = null }
             )
         }
 

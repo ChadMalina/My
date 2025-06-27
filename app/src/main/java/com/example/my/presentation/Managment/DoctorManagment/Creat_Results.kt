@@ -53,13 +53,11 @@ fun CreateSubmission(
             TopAppBar(
                 title = {
                     Text("Create Submissions", fontWeight = FontWeight.Bold)
-                },
-                actions = {
-                    IconButton(onClick = {navController.popBackStack()}) {
+                }, actions = {
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Default.Close, contentDescription = "Close")
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
+                }, colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Blue80,
                     titleContentColor = Color.White,
                     actionIconContentColor = Color.White
@@ -71,8 +69,7 @@ fun CreateSubmission(
         Column(
             modifier = Modifier
                 .paint(
-                    painter = painterResource(R.drawable.img2),
-                    contentScale = ContentScale.Crop
+                    painter = painterResource(R.drawable.img2), contentScale = ContentScale.Crop
                 )
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -151,17 +148,14 @@ fun CreateSubmission(
                 )
 
                 Text(
-                    text = "The URL you are going to paste above is the link to the SUBMISSION which you have uploaded to a third - party app or website." +
-                            " An example is the link generated for public file sharing in cloud services like Google Drive when you choose to share an uploaded file." +
-                            "  NOTE: The URL must start with https://",
+                    text = "The URL you are going to paste above is the link to the SUBMISSION which you have uploaded to a third - party app or website." + " An example is the link generated for public file sharing in cloud services like Google Drive when you choose to share an uploaded file." + "  NOTE: The URL must start with https://",
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     color = Color(red = 103, green = 58, blue = 183, alpha = 255),
                     modifier = Modifier
                         .background(
-                            color = Color.White.copy(alpha = 0.5f),
-                            shape = RoundedCornerShape(8.dp)
+                            color = Color.White.copy(alpha = 0.5f), shape = RoundedCornerShape(8.dp)
                         )
                         .fillMaxWidth()
                         .padding(start = 20.dp, end = 20.dp),
@@ -182,7 +176,7 @@ fun CreateSubmission(
                     Button(
                         onClick = {
                             // Validate input fields
-                            if (divisionName.isBlank() || submissiontitle.isBlank() || submissiondescription.isBlank() ||  fileURL.isBlank()) {
+                            if (divisionName.isBlank() || submissiontitle.isBlank() || submissiondescription.isBlank() || fileURL.isBlank()) {
                                 Toast.makeText(
                                     navController.context,
                                     "Please fill all fields",
@@ -191,9 +185,7 @@ fun CreateSubmission(
                             } else if (doctor.isNullOrBlank()) {
                                 // Teacher name is missing
                                 Toast.makeText(
-                                    navController.context,
-                                    "Doctor not found",
-                                    Toast.LENGTH_SHORT
+                                    navController.context, "Doctor not found", Toast.LENGTH_SHORT
                                 ).show()
                             } else {
                                 // Proceed with submission creation
@@ -209,16 +201,12 @@ fun CreateSubmission(
 
                                 navController.navigate(ROUT_DOCTOR_DASHBOARD)
                             }
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Teal80,
-                            contentColor = Color.White
+                        }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(
+                            containerColor = Teal80, contentColor = Color.White
                         )
                     ) {
                         Text(
-                            text = "Create",
-                            fontSize = 18.sp
+                            text = "Create", fontSize = 18.sp
                         )
                     }
 

@@ -132,7 +132,8 @@ fun CurrentSubmissionDialog(
                                     }
                                 }
                             } else {
-                                Toast.makeText(context, "File URL is empty", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "File URL is empty", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }) {
                             Text("Download Submission")

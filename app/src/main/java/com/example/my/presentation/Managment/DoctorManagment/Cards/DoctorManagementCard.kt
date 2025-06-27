@@ -30,18 +30,17 @@ fun DoctorManagementCard(
     onDeleteClick: () -> Unit,
     onReadClick: () -> Unit,
 
-) {
+    ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(170.dp)
             .border(3.dp, Blue80, shape = RoundedCornerShape(20.dp)),
-        colors = CardDefaults.cardColors(containerColor = Color(
-            red = 255,
-            green = 255,
-            blue = 255,
-            alpha = 143
-        ),),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(
+                red = 255, green = 255, blue = 255, alpha = 143
+            ),
+        ),
 
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(8.dp)
@@ -60,7 +59,7 @@ fun DoctorManagementCard(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = submission.createdTime, fontSize = 16.sp,color = Color.Gray)
+                    Text(text = submission.createdTime, fontSize = 16.sp, color = Color.Gray)
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -85,11 +84,15 @@ fun DoctorManagementCard(
                 ) {
                     TextButton(
                         onClick = { onReadClick() },
-                        modifier = Modifier
-                            .weight(1f),
+                        modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.textButtonColors(contentColor = Color.Black)
                     ) {
-                        Icon(Icons.Default.FavoriteBorder, contentDescription = "Read", tint = Color.Black, modifier = Modifier.size(24.dp))
+                        Icon(
+                            Icons.Default.FavoriteBorder,
+                            contentDescription = "Read",
+                            tint = Color.Black,
+                            modifier = Modifier.size(24.dp)
+                        )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text("Read", color = Color.Black, fontSize = 16.sp)
                     }
@@ -97,18 +100,22 @@ fun DoctorManagementCard(
                     TextButton(
                         onClick = {
                             // 1) Save the Assignment into the SavedStateHandle of the current entry
-                            navController.currentBackStackEntry
-                                ?.savedStateHandle
-                                ?.set("submissionToEdit", submission)
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                "submissionToEdit", submission
+                            )
 
                             // 2) Navigate to the Update screen
                             navController.navigate(ROUT_DOCTOR_UPDATE_RESULTS)
                         },
-                        modifier = Modifier
-                            .weight(1f),
+                        modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.textButtonColors(contentColor = Color.Black)
                     ) {
-                        Icon(Icons.Default.Edit, contentDescription = "Update", tint = Color.Black, modifier = Modifier.size(24.dp))
+                        Icon(
+                            Icons.Default.Edit,
+                            contentDescription = "Update",
+                            tint = Color.Black,
+                            modifier = Modifier.size(24.dp)
+                        )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text("Update", color = Color.Black, fontSize = 16.sp)
                     }
@@ -118,7 +125,12 @@ fun DoctorManagementCard(
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.textButtonColors(contentColor = Color.Black)
                     ) {
-                        Icon(Icons.Default.Delete, contentDescription = "Delete", tint = Color.Black, modifier = Modifier.size(24.dp))
+                        Icon(
+                            Icons.Default.Delete,
+                            contentDescription = "Delete",
+                            tint = Color.Black,
+                            modifier = Modifier.size(24.dp)
+                        )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text("Delete", color = Color.Black, fontSize = 16.sp)
                     }

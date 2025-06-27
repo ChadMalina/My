@@ -1,7 +1,6 @@
 package com.example.my.presentation.Managment.PatientManagement.Cards
 
 
-
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -67,8 +66,7 @@ fun SubmitFileUrlDialog(
                     )
                     IconButton(onClick = { onClose() }) {
                         Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = "Close"
+                            imageVector = Icons.Default.Close, contentDescription = "Close"
                         )
                     }
                 }
@@ -89,17 +87,14 @@ fun SubmitFileUrlDialog(
 
                 // Explanation text
                 Text(
-                    text = "The URL you are going to paste above is the link to the Submission which you have uploaded to a third-party app or website." +
-                            " An example is the link generated for public file sharing in cloud services like Google Drive when you choose to share an uploaded file." +
-                            " NOTE: The URL must start with https://",
+                    text = "The URL you are going to paste above is the link to the Submission which you have uploaded to a third-party app or website." + " An example is the link generated for public file sharing in cloud services like Google Drive when you choose to share an uploaded file." + " NOTE: The URL must start with https://",
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     color = Color(red = 103, green = 58, blue = 183, alpha = 255),
                     modifier = Modifier
                         .background(
-                            color = Color.White.copy(alpha = 0.5f),
-                            shape = RoundedCornerShape(8.dp)
+                            color = Color.White.copy(alpha = 0.5f), shape = RoundedCornerShape(8.dp)
                         )
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp),
@@ -110,8 +105,7 @@ fun SubmitFileUrlDialog(
 
                 // Submit Button
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
+                    modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
                 ) {
                     Button(onClick = {
                         val user = authViewModel._currentUserData.value
@@ -127,24 +121,21 @@ fun SubmitFileUrlDialog(
                         }
 
                         val database = FirebaseDatabase.getInstance()
-                        val ref = database.getReference("$hospitalName/Submission/$submissionId/$userName/submittedfile")
+                        val ref =
+                            database.getReference("$hospitalName/Submission/$submissionId/$userName/submittedfile")
 
-                        ref.setValue(fileURL)
-                            .addOnSuccessListener {
-                                Toast.makeText(
-                                    context,
-                                    "Submission submitted successfully",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                onClose() // close dialog on success
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(
-                                    context,
-                                    "Failed to submit the submission: ${it.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                        ref.setValue(fileURL).addOnSuccessListener {
+                            Toast.makeText(
+                                context, "Submission submitted successfully", Toast.LENGTH_SHORT
+                            ).show()
+                            onClose() // close dialog on success
+                        }.addOnFailureListener {
+                            Toast.makeText(
+                                context,
+                                "Failed to submit the submission: ${it.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }) {
                         Text("Submit")
                     }

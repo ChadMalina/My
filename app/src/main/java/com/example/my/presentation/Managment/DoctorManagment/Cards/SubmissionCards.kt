@@ -38,17 +38,11 @@ fun SubmissionCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp),
-        colors = CardDefaults.cardColors(
+            .height(120.dp), colors = CardDefaults.cardColors(
             containerColor = Color(
-                red = 255,
-                green = 255,
-                blue = 255,
-                alpha = 143
+                red = 255, green = 255, blue = 255, alpha = 143
             ),
-        ),
-        shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(8.dp)
+        ), shape = RoundedCornerShape(20.dp), elevation = CardDefaults.cardElevation(8.dp)
     ) {
 
         Row(
@@ -68,10 +62,7 @@ fun SubmissionCard(
                 Text(text = submission.divisionName, fontSize = 16.sp, color = Color.Black)
 
                 Text(
-                    text = userName,
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Teal80
+                    text = userName, fontSize = 30.sp, fontWeight = FontWeight.Bold, color = Teal80
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -86,12 +77,10 @@ fun SubmissionCard(
 
             Button(
                 onClick = { onDownloadClick() },
-                modifier = Modifier
-                    .padding(end = 1.dp),
+                modifier = Modifier.padding(end = 1.dp),
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent,
-                    contentColor = Color.Black
+                    containerColor = Color.Transparent, contentColor = Color.Black
                 ),
                 contentPadding = PaddingValues(8.dp)
             ) {
@@ -112,13 +101,11 @@ fun SubmissionCard(
             }
 
             Button(
-                onClick = { onUploadClick()},
-                modifier = Modifier
-                    .padding(end = 16.dp),
+                onClick = { onUploadClick() },
+                modifier = Modifier.padding(end = 16.dp),
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent,
-                    contentColor = Color.Black
+                    containerColor = Color.Transparent, contentColor = Color.Black
                 ),
                 contentPadding = PaddingValues(8.dp)
             ) {

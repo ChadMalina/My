@@ -28,7 +28,6 @@ import com.example.my.presentation.Managment.PatientManagement.Cards.CurrentSubm
 import com.example.my.ui.theme.GlobalTopNavBar
 
 
-
 @Composable
 fun CurrentSubmission(
     navController: NavHostController,
@@ -53,16 +52,12 @@ fun CurrentSubmission(
     Scaffold(
         topBar = {
             GlobalTopNavBar(
-                title = "Current Submissions",
-                onClose = { navController.popBackStack() }
-            )
-        }
-    ) { paddingValues ->
+                title = "Current Submissions", onClose = { navController.popBackStack() })
+        }) { paddingValues ->
         Box(
             modifier = Modifier
                 .paint(
-                    painter = painterResource(R.drawable.img2),
-                    contentScale = ContentScale.Crop
+                    painter = painterResource(R.drawable.img2), contentScale = ContentScale.Crop
                 )
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -76,9 +71,7 @@ fun CurrentSubmission(
             ) {
                 items(SubmissionViewModel.submissions) { submissions ->
                     ManagementCard(
-                        submission = submissions,
-                        onClick = { selected = submissions }
-                    )
+                        submission = submissions, onClick = { selected = submissions })
                 } // <--- This closes `items`
             }
 
@@ -94,8 +87,7 @@ fun CurrentSubmission(
                     doctor = selected!!.doctor,
                     divisionName = selected!!.divisionName,
                     fileURL = selected!!.fileURL,
-                    onClose = { selected = null }
-                )
+                    onClose = { selected = null })
             }
         }
     }

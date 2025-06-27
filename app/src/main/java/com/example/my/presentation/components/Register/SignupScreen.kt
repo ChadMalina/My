@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.my.presentation.components.Register
 
 
@@ -37,7 +39,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -49,8 +50,8 @@ import androidx.navigation.NavController
 import com.example.my.Data.Auth.UserAuthViewModel
 import com.example.my.presentation.navigation.ROUT_LOGIN
 import com.example.my.R
-
-
+import com.example.my.presentation.navigation.ROUT_DOCTOR_DASHBOARD
+import com.example.my.presentation.navigation.ROUT_PATIENT_DASHBOARD
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,8 +59,8 @@ import com.example.my.R
 @Composable
 fun MainRegister(
     navController: NavController,
-    UserAuthViewModel: UserAuthViewModel
-){
+    userAuthViewModel: UserAuthViewModel
+) {
 
     val options = listOf("Patient", "Doctor")
     var expanded by remember { mutableStateOf(false) }
@@ -75,7 +76,6 @@ fun MainRegister(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
 
 
         Text(
@@ -98,12 +98,11 @@ fun MainRegister(
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
         var confpassword by remember { mutableStateOf("") }
-        val context = LocalContext.current
 
         OutlinedTextField(
             value = name,
-            onValueChange = { name = it},
-            label = { Text(text = "Full Name", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { name = it },
+            label = { Text(text = "Full Name", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription = "") },
             modifier = Modifier
@@ -116,8 +115,8 @@ fun MainRegister(
 
         OutlinedTextField(
             value = email,
-            onValueChange = {email = it},
-            label = { Text(text = "Email Address", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { email = it },
+            label = { Text(text = "Email Address", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "") },
             modifier = Modifier
@@ -131,8 +130,8 @@ fun MainRegister(
 
         OutlinedTextField(
             value = medicalcode,
-            onValueChange = { medicalcode = it},
-            label = { Text(text = "Medical Code", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { medicalcode = it },
+            label = { Text(text = "Medical Code", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = { Icon(imageVector = Icons.Default.Place, contentDescription = "") },
             modifier = Modifier
@@ -145,8 +144,8 @@ fun MainRegister(
         Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(
             value = password,
-            onValueChange = {password = it},
-            label = { Text(text = "Password", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { password = it },
+            label = { Text(text = "Password", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
             visualTransformation = PasswordVisualTransformation(),
@@ -161,8 +160,8 @@ fun MainRegister(
 
         OutlinedTextField(
             value = confpassword,
-            onValueChange = {confpassword = it},
-            label = { Text(text = "Confirm Password", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { confpassword = it },
+            label = { Text(text = "Confirm Password", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
             visualTransformation = PasswordVisualTransformation(),
@@ -189,6 +188,7 @@ fun MainRegister(
                     ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                 },
                 modifier = Modifier
+                    .menuAnchor()
                     .fillMaxWidth()
             )
 
@@ -211,11 +211,29 @@ fun MainRegister(
 
 
         Button(
-            onClick = { UserAuthViewModel.signup(name, email, medicalcode, password, confpassword, selectedOptionText)},
-            colors = ButtonDefaults.buttonColors(Color(red = 103, green = 58, blue = 183, alpha = 255)),            modifier = Modifier
+            onClick = {
+                userAuthViewModel.signup(
+                    name,
+                    email,
+                    medicalcode,
+                    password,
+                    confpassword,
+                    selectedOptionText
+                )
+            },
+            colors = ButtonDefaults.buttonColors(
+                Color(
+                    red = 103,
+                    green = 58,
+                    blue = 183,
+                    alpha = 255
+                )
+            ),
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
-            shape = RoundedCornerShape(5.dp)) {
+            shape = RoundedCornerShape(5.dp)
+        ) {
             Text(text = "REGISTER")
         }
 
@@ -227,7 +245,8 @@ fun MainRegister(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
-            shape = RoundedCornerShape(5.dp)) {
+            shape = RoundedCornerShape(5.dp)
+        ) {
             Text(
                 text = "Already a member?",
                 fontFamily = FontFamily.SansSerif,

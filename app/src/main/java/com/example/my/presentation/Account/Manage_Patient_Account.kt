@@ -40,7 +40,7 @@ fun ManagePatientAccount(
     navController: NavController,
     userAuthViewModel: UserAuthViewModel,
     hospitalAuthViewModel: HospitalAuthViewModel
-){
+) {
 
     val User = userAuthViewModel._currentUserData.value
     val userName = User?.name ?: "Unknown user"
@@ -52,7 +52,7 @@ fun ManagePatientAccount(
         topBar = {
             GlobalTopNavBar(
                 title = "Manage Your Account",
-                onClose = {navController.popBackStack()}
+                onClose = { navController.popBackStack() }
             )
         }
     ) { paddingValues ->
@@ -61,7 +61,10 @@ fun ManagePatientAccount(
                 .paint(
                     painter = painterResource(R.drawable.img2),
                     contentScale = ContentScale.Crop
-                ).fillMaxSize().padding(paddingValues).padding(5.dp),
+                )
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(5.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -90,7 +93,7 @@ fun ManagePatientAccount(
                             fontFamily = FontFamily.SansSerif
 
                         )
-                    ){
+                    ) {
                         Text("Email")
                         Text("Medical Code")
                     }
@@ -135,13 +138,16 @@ fun ManagePatientAccount(
 
 
             Button(
-                onClick = {userAuthViewModel.logout()},
+                onClick = { userAuthViewModel.logout() },
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Red,
                     contentColor = Color.DarkGray
                 ),
-                modifier = Modifier.fillMaxWidth().height(60.dp).padding(vertical = 4.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+                    .padding(vertical = 4.dp)
             ) {
                 Text(
                     text = "LOGOUT",

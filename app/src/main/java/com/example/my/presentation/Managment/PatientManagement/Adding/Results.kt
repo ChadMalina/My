@@ -58,7 +58,11 @@ fun Results(
     val context = LocalContext.current
     var hospitalName by remember { mutableStateOf<String?>(null) }
 
-    var submissions by remember { mutableStateOf<List<Triple<Submissions, String, String>>>(emptyList()) }
+    var submissions by remember {
+        mutableStateOf<List<Triple<Submissions, String, String>>>(
+            emptyList()
+        )
+    }
 
     // Fetch the current hospital name once
     LaunchedEffect(Unit) {
@@ -68,21 +72,18 @@ fun Results(
                 val newList = submissionViewModel.createdSubmissions.flatMap { submission ->
                     val submissionId = submission.submissionId
                     val snapshot = runBlocking {
-                        FirebaseDatabase.getInstance()
-                            .getReference("$sn/Submissions/$submissionId")
-                            .get()
-                            .await()
+                        FirebaseDatabase.getInstance().getReference("$sn/Submissions/$submissionId")
+                            .get().await()
                     }
 
-                    snapshot.children
-                        .filter { it.key != "info" }
-                        .mapNotNull { userSnap ->
-                            val userName = userSnap.key ?: return@mapNotNull null
-                            val reportfileURL = userSnap.child("reportfileURL").getValue(String::class.java)
-                            if (!reportfileURL.isNullOrBlank()) {
-                                Triple(submission, userName, reportfileURL)
-                            } else null
-                        }
+                    snapshot.children.filter { it.key != "info" }.mapNotNull { userSnap ->
+                        val userName = userSnap.key ?: return@mapNotNull null
+                        val reportfileURL =
+                            userSnap.child("reportfileURL").getValue(String::class.java)
+                        if (!reportfileURL.isNullOrBlank()) {
+                            Triple(submission, userName, reportfileURL)
+                        } else null
+                    }
                 }
                 submissions = newList
             }
@@ -97,23 +98,22 @@ fun Results(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Results", fontWeight = FontWeight.Bold) },
-                actions = {
+                title = { Text("Results", fontWeight = FontWeight.Bold) }, actions = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Default.Close, contentDescription = "Close")
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
+                }, colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Green80,
                     titleContentColor = Color.White,
                     actionIconContentColor = Color.White
                 )
             )
-        }
-    ) { paddingValues ->
+        }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
-                .paint(painterResource(R.drawable.img2), contentScale = ContentScale.Crop)
+                .paint(
+                    painterResource(R.drawable.img2), contentScale = ContentScale.Crop
+                )
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(16.dp),
@@ -145,17 +145,14 @@ fun Results(
                                     context.startActivity(chooser)
                                 } else {
                                     Toast.makeText(
-                                        context,
-                                        "No app available to open link",
-                                        Toast.LENGTH_SHORT
+                                        context, "No app available to open link", Toast.LENGTH_SHORT
                                     ).show()
                                 }
                             }
                         } else {
                             Toast.makeText(context, "File URL is empty", Toast.LENGTH_SHORT).show()
                         }
-                    }
-                )
+                    })
             }
         }
     }

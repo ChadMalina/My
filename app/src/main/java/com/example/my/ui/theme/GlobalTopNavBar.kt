@@ -17,28 +17,25 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GlobalTopNavBar(
-    title: String,
-    onClose: () -> Unit = {}
-){
+    title: String, onClose: () -> Unit = {}
+) {
     TopAppBar(
         title = {
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                fontStyle = FontStyle.Italic
-            )
-        },
-        actions = {
-            IconButton(onClick = { onClose()}) {
-                Icon(Icons.Default.Close, contentDescription = "Close")
-            }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color(0xFF673AB7),
-            titleContentColor = Color.White,
-            navigationIconContentColor = Color.White,
-            actionIconContentColor = Color.White
+        Text(
+            text = title,
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            fontStyle = FontStyle.Italic
         )
+    }, actions = {
+        IconButton(onClick = { onClose() }) {
+            Icon(Icons.Default.Close, contentDescription = "Close")
+        }
+    }, colors = TopAppBarDefaults.topAppBarColors(
+        containerColor = Color(0xFF673AB7),
+        titleContentColor = Color.White,
+        navigationIconContentColor = Color.White,
+        actionIconContentColor = Color.White
+    )
     )
 }

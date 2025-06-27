@@ -31,13 +31,14 @@ import com.example.my.ui.theme.Teal80
 
 
 @Composable
-fun About(navController: NavController
-){
+fun About(
+    navController: NavController
+) {
     Scaffold(
         topBar = {
             GlobalTopNavBar(
                 title = "About",
-                onClose = { navController.popBackStack()}
+                onClose = { navController.popBackStack() }
             )
 
         }
@@ -126,7 +127,7 @@ fun About(navController: NavController
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text =  "I hope you enjoy the services provided by My Hospital App. Thank you for choosing us.",
+                    text = "I hope you enjoy the services provided by My Hospital App. Thank you for choosing us.",
                     fontSize = 18.sp,
                     fontFamily = FontFamily.SansSerif,
                     color = Color.DarkGray,
@@ -147,7 +148,7 @@ fun About(navController: NavController
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text =  "This would not have been possible without the eMobilis team, which has encouraged me to be able to" +
+                    text = "This would not have been possible without the eMobilis team, which has encouraged me to be able to" +
                             " create this app. I appreciate for their assistance and support.",
                     fontSize = 18.sp,
                     fontFamily = FontFamily.SansSerif,
@@ -169,7 +170,7 @@ fun About(navController: NavController
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text =  "© 2025 TheChadCorps. All rights reserved. \n" +
+                    text = "© 2025 TheChadCorps. All rights reserved. \n" +
                             "Email: pchad65303@gmail.com",
                     fontSize = 18.sp,
                     fontFamily = FontFamily.SansSerif,

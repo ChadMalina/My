@@ -1,7 +1,5 @@
 package com.example.my.presentation.Splash
 
-
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -18,6 +16,7 @@ import androidx.navigation.NavHostController
 import com.example.my.presentation.navigation.ROUT_LOGIN
 import com.example.my.R
 import com.example.my.ui.theme.Blue80
+import com.example.my.ui.theme.Purple40
 import kotlinx.coroutines.delay
 
 @Composable
@@ -38,7 +37,7 @@ fun SplashScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = (Blue80))
+            .background(color = (Purple40))
         // or use .paint(painter = painterResource(R.drawable.splash_bg), contentScale = ContentScale.Crop)
     ) {
         Image(

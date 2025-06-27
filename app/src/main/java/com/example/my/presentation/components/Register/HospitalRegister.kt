@@ -47,27 +47,26 @@ import com.example.my.R
 import com.example.my.Data.Auth.HospitalAuthViewModel
 import com.example.my.Data.Auth.MedicalCodeGenerator
 import com.example.my.presentation.navigation.ROUT_HOSPITAL_LOGIN
+import com.example.my.presentation.navigation.ROUT_PATIENT_DASHBOARD
 import com.example.my.ui.theme.Blue80
-
 
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
 fun HospitalRegister(
     navController: NavHostController,
-    HospitalAuthViewModel: HospitalAuthViewModel
-){
+    hospitalAuthViewModel: HospitalAuthViewModel
+) {
     Column(
         modifier = Modifier
             .paint(
-                painter = painterResource(R.drawable.img),
+                painter = painterResource(R.drawable.img2),
                 contentScale = ContentScale.Crop
             )
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
 
 
         Text(
@@ -85,16 +84,16 @@ fun HospitalRegister(
         )
         Spacer(modifier = Modifier.height(30.dp))
 
-        var hospitalname by remember { mutableStateOf("")}
+        var hospitalname by remember { mutableStateOf("") }
         var hospitalemail by remember { mutableStateOf("") }
-        val medicalCodeState: MutableState<String> = remember { mutableStateOf("") }
+        val medicalcode: MutableState<String> = remember { mutableStateOf("") }
         var hospitalpassword by remember { mutableStateOf("") }
         var hospitalconfpassword by remember { mutableStateOf("") }
 
         OutlinedTextField(
             value = hospitalname,
-            onValueChange = { hospitalname = it},
-            label = { Text(text = "Hospital Name", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { hospitalname = it },
+            label = { Text(text = "Hospital Name", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription = "") },
             modifier = Modifier
@@ -107,8 +106,8 @@ fun HospitalRegister(
 
         OutlinedTextField(
             value = hospitalemail,
-            onValueChange = {hospitalemail = it},
-            label = { Text(text = "School Email Address", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { hospitalemail = it },
+            label = { Text(text = "Hospital Email Address", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "") },
             modifier = Modifier
@@ -125,10 +124,11 @@ fun HospitalRegister(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp),
-            verticalAlignment = Alignment.CenterVertically)
+            verticalAlignment = Alignment.CenterVertically
+        )
         {
             OutlinedTextField(
-                value = medicalCodeState.value,
+                value = medicalcode.value,
                 onValueChange = {},
                 label = { Text(text = "Hospital Code", fontFamily = FontFamily.SansSerif) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -143,7 +143,7 @@ fun HospitalRegister(
             Button(
                 onClick = {
                     MedicalCodeGenerator.generateMedicalCode { medicalCode ->
-                        medicalCodeState.value = medicalCode
+                        medicalcode.value = medicalCode
                     }
                 },
                 colors = ButtonDefaults.buttonColors(Blue80),
@@ -158,7 +158,8 @@ fun HospitalRegister(
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
-            text = "The code generated above is your hospital code. This will be used by both patients and doctors to register to your specific hospital.",
+            text = "The code generated above is your hospital code." +
+                    " This will be used by both patients and doctors to register to your specific hospital.",
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.SansSerif,
@@ -174,8 +175,8 @@ fun HospitalRegister(
 
         OutlinedTextField(
             value = hospitalpassword,
-            onValueChange = {hospitalpassword = it},
-            label = { Text(text = "Password", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { hospitalpassword = it },
+            label = { Text(text = "Password", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
             visualTransformation = PasswordVisualTransformation(),
@@ -190,8 +191,8 @@ fun HospitalRegister(
 
         OutlinedTextField(
             value = hospitalconfpassword,
-            onValueChange = {hospitalconfpassword = it},
-            label = { Text(text = "Confirm Password", fontFamily = FontFamily.SansSerif)},
+            onValueChange = { hospitalconfpassword = it },
+            label = { Text(text = "Confirm Password", fontFamily = FontFamily.SansSerif) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
             visualTransformation = PasswordVisualTransformation(),
@@ -208,12 +209,21 @@ fun HospitalRegister(
 
 
         Button(
-            onClick = { HospitalAuthViewModel.Hospitalregister(hospitalname, hospitalemail, medicalCodeState.value, hospitalpassword, hospitalconfpassword)},
-            colors = ButtonDefaults.buttonColors(Color(red = 103, green = 58, blue = 183, alpha = 255)),
+            onClick = { hospitalAuthViewModel.Hospitalregister(hospitalname, hospitalemail,
+                medicalcode.toString(), hospitalpassword, hospitalconfpassword) },
+            colors = ButtonDefaults.buttonColors(
+                Color(
+                    red = 103,
+                    green = 58,
+                    blue = 183,
+                    alpha = 255
+                )
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
-            shape = RoundedCornerShape(5.dp)) {
+            shape = RoundedCornerShape(5.dp)
+        ) {
             Text(text = "REGISTER")
         }
 
@@ -225,7 +235,8 @@ fun HospitalRegister(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
-            shape = RoundedCornerShape(5.dp)) {
+            shape = RoundedCornerShape(5.dp)
+        ) {
             Text(
                 text = "Already a member?",
                 fontFamily = FontFamily.SansSerif,

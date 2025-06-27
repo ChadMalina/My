@@ -1,6 +1,7 @@
 package com.example.my.Data.Auth
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -72,6 +73,7 @@ class HospitalAuthViewModel(var navController: NavController, var context: Conte
                                         true // avoids creating multiple copies of the same destination
                                 }
                             } else {
+                                //Log.e("ERROR_FB", "Hospitalregister: ", it.exception)
                                 Toast.makeText(
                                     context,
                                     "${it.exception?.message}",

@@ -47,8 +47,7 @@ import com.example.my.ui.theme.Teal80
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HospitalDashboard(
-    navController: NavHostController,
-    HospitalAuthViewModel: HospitalAuthViewModel
+    navController: NavHostController, HospitalAuthViewModel: HospitalAuthViewModel
 ) {
 
     val hospital = HospitalAuthViewModel._currentHospitalData.value
@@ -59,34 +58,28 @@ fun HospitalDashboard(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "Hospital Info",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
-                },
-                actions = {
-                    IconButton(onClick = {navController.navigate(ROUT_MANAGE_HOSPITAL_ACCOUNT)}) {
-                        Icon(Icons.Default.AccountCircle, contentDescription = "Manage Account")
-                    }
-                    IconButton(onClick = {navController.navigate(ROUT_ABOUT)}) {
-                        Icon(Icons.Default.Info, contentDescription = "About")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF673AB7),
-                    titleContentColor = Blue80,
-                    navigationIconContentColor = Teal80,
-                    actionIconContentColor = Green80
+                Text(
+                    text = "Hospital Info", fontWeight = FontWeight.Bold, fontSize = 20.sp
                 )
+            }, actions = {
+                IconButton(onClick = { navController.navigate(ROUT_MANAGE_HOSPITAL_ACCOUNT) }) {
+                    Icon(Icons.Default.AccountCircle, contentDescription = "Manage Account")
+                }
+                IconButton(onClick = { navController.navigate(ROUT_ABOUT) }) {
+                    Icon(Icons.Default.Info, contentDescription = "About")
+                }
+            }, colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Color(0xFF673AB7),
+                titleContentColor = Blue80,
+                navigationIconContentColor = Teal80,
+                actionIconContentColor = Green80
             )
-        }
-    ) { paddingValues ->
+            )
+        }) { paddingValues ->
         Column(
             modifier = Modifier
                 .paint(
-                    painter = painterResource(R.drawable.img2),
-                    contentScale = ContentScale.Crop
+                    painter = painterResource(R.drawable.img2), contentScale = ContentScale.Crop
                 )
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -99,8 +92,7 @@ fun HospitalDashboard(
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(16.dp))
                     .height(50.dp)
-                    .background(Color.White.copy(alpha = 0.7f)),
-                contentAlignment = Alignment.Center
+                    .background(Color.White.copy(alpha = 0.7f)), contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = hospitalName.uppercase(),
@@ -120,12 +112,10 @@ fun HospitalDashboard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(16.dp))
-                    .background(Color.White.copy(alpha = 0.7f)),
-                contentAlignment = Alignment.Center
+                    .background(Color.White.copy(alpha = 0.7f)), contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Welcome, Administrator of $hospitalName to My Hospital App, where all doctors and patients will be freely able to" +
-                            " obtain and share submissions with each other.",
+                    text = "Welcome, Administrator of $hospitalName to My Hospital App, where all doctors and patients will be freely able to" + " obtain and share submissions with each other.",
                     fontSize = 18.sp,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center,
@@ -143,12 +133,10 @@ fun HospitalDashboard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(16.dp))
-                    .background(Color.White.copy(alpha = 0.7f)),
-                contentAlignment = Alignment.Center
+                    .background(Color.White.copy(alpha = 0.7f)), contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "This is the Medical code $medicalcode for your hospital. This will allow doctors and" +
-                            " patients to register to be able to freely use the app.",
+                    text = "This is the Medical code $medicalcode for your hospital. This will allow doctors and" + " patients to register to be able to freely use the app.",
                     fontSize = 18.sp,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center,
@@ -167,11 +155,10 @@ fun HospitalDashboard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(16.dp))
-                    .background(Color.White.copy(alpha = 0.7f)),
-                contentAlignment = Alignment.Center
+                    .background(Color.White.copy(alpha = 0.7f)), contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text =  "I hope your hospital enjoy the services provided by My Hospital App. Thank you for choosing us.",
+                    text = "I hope your hospital enjoy the services provided by My Hospital App. Thank you for choosing us.",
                     fontSize = 18.sp,
                     fontFamily = FontFamily.SansSerif,
                     textAlign = TextAlign.Center,

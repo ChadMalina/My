@@ -68,8 +68,7 @@ fun UploadResultsDialog(
                     )
                     IconButton(onClick = { onClose() }) {
                         Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = "Close"
+                            imageVector = Icons.Default.Close, contentDescription = "Close"
                         )
                     }
                 }
@@ -90,17 +89,14 @@ fun UploadResultsDialog(
 
                 // Explanation text
                 Text(
-                    text = "The URL you are going to paste above is the link to the submission which you have uploaded to a third-party app or website." +
-                            " An example is the link generated for public file sharing in cloud services like Google Drive when you choose to share an uploaded file." +
-                            " NOTE: The URL must start with https://",
+                    text = "The URL you are going to paste above is the link to the submission which you have uploaded to a third-party app or website." + " An example is the link generated for public file sharing in cloud services like Google Drive when you choose to share an uploaded file." + " NOTE: The URL must start with https://",
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     color = Color(red = 103, green = 58, blue = 183, alpha = 255),
                     modifier = Modifier
                         .background(
-                            color = Color.White.copy(alpha = 0.5f),
-                            shape = RoundedCornerShape(8.dp)
+                            color = Color.White.copy(alpha = 0.5f), shape = RoundedCornerShape(8.dp)
                         )
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp),
@@ -111,8 +107,7 @@ fun UploadResultsDialog(
 
                 // Submit Button
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
+                    modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
                 ) {
                     Button(
                         onClick = {
@@ -123,16 +118,16 @@ fun UploadResultsDialog(
                             // write to /<schoolName>/Assignments/<assignId>/<userName>/reportfileURL
                             FirebaseDatabase.getInstance()
                                 .getReference("$hospitalName/Submissions/$submissionId/$userName/reportfileURL")
-                                .setValue(reportfileURL)
-                                .addOnSuccessListener {
-                                    Toast.makeText(context, "Results uploaded", Toast.LENGTH_SHORT).show()
+                                .setValue(reportfileURL).addOnSuccessListener {
+                                    Toast.makeText(context, "Results uploaded", Toast.LENGTH_SHORT)
+                                        .show()
                                     onClose()
+                                }.addOnFailureListener {
+                                    Toast.makeText(
+                                        context, "Upload failed: ${it.message}", Toast.LENGTH_SHORT
+                                    ).show()
                                 }
-                                .addOnFailureListener {
-                                    Toast.makeText(context, "Upload failed: ${it.message}", Toast.LENGTH_SHORT).show()
-                                }
-                        }
-                    ) {
+                        }) {
                         Text("Submit")
                     }
                 }

@@ -33,16 +33,12 @@ fun AccessAllSubmissions(
     Scaffold(
         topBar = {
             GlobalTopNavBar(
-                title = "All Assignments",
-                onClose = { navController.popBackStack() }
-            )
-        }
-    ) { paddingValues ->
+                title = "All Assignments", onClose = { navController.popBackStack() })
+        }) { paddingValues ->
         LazyColumn(
             modifier = Modifier
                 .paint(
-                    painter = painterResource(R.drawable.img2),
-                    contentScale = ContentScale.Crop
+                    painter = painterResource(R.drawable.img2), contentScale = ContentScale.Crop
                 )
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -52,9 +48,7 @@ fun AccessAllSubmissions(
         ) {
             items(SubmissionViewModel.submissions) { submissions ->
                 ManagementCard(
-                    submission = submissions,
-                    onClick = { selected = submissions }
-                )
+                    submission = submissions, onClick = { selected = submissions })
             }
         }
 
@@ -65,11 +59,10 @@ fun AccessAllSubmissions(
                 submissiondescription = a.submissiondescription,
                 createdTime = a.createdTime,
                 doctor = a.doctor,
-                divisionName =  a.divisionName,
+                divisionName = a.divisionName,
                 fileURL = a.fileURL,
                 context = context,
-                onClose = { selected = null }
-            )
+                onClose = { selected = null })
         }
     }
 }

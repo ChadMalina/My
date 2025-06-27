@@ -41,10 +41,10 @@ import com.example.my.ui.theme.GlobalTopNavBar
 fun ManageHospitalAccount(
     navController: NavController,
     UserAuthViewModel: UserAuthViewModel,
-    HospitalAuthViewModel: HospitalAuthViewModel
+    hospitalAuthViewModel: HospitalAuthViewModel
 ) {
 
-    val hospital = HospitalAuthViewModel._currentHospitalData.value
+    val hospital = hospitalAuthViewModel._currentHospitalData.value
     val hospitalname = hospital?.hosipitalname ?: "Hospital"
     val hospitalemail = hospital?.hosipitalemail ?: "Unknown email"
     val medicalcode = hospital?.medicalcode ?: "Unknown school code"
@@ -52,16 +52,12 @@ fun ManageHospitalAccount(
     Scaffold(
         topBar = {
             GlobalTopNavBar(
-                title = "Manage Your Account",
-                onClose = {navController.popBackStack()}
-            )
-        }
-    ) { paddingValues ->
+                title = "Manage Your Account", onClose = { navController.popBackStack() })
+        }) { paddingValues ->
         Column(
             modifier = Modifier
                 .paint(
-                    painter = painterResource(R.drawable.img2),
-                    contentScale = ContentScale.Crop
+                    painter = painterResource(R.drawable.img2), contentScale = ContentScale.Crop
                 )
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -142,11 +138,10 @@ fun ManageHospitalAccount(
 
 
             Button(
-                onClick = {HospitalAuthViewModel.logout()},
+                onClick = { hospitalAuthViewModel.logout() },
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Green80,
-                    contentColor = Color.DarkGray
+                    containerColor = Green80, contentColor = Color.DarkGray
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -154,9 +149,7 @@ fun ManageHospitalAccount(
                     .padding(vertical = 4.dp)
             ) {
                 Text(
-                    text = "LOGOUT",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                    text = "LOGOUT", fontSize = 16.sp, fontWeight = FontWeight.Bold
                 )
             }
         }

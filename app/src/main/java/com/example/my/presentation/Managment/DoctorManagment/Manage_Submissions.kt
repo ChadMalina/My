@@ -62,22 +62,23 @@ fun ManageSubmissions(
     }
 
     // 2️⃣ Build flat list of (submission, userName)
-    val submissions: List<Pair<Submissions, String>> = remember(hospitalName, submissionViewModel.createdSubmissions) {
-        val sn = hospitalName ?: return@remember emptyList()
-        submissionViewModel.createdSubmissions.flatMap { submissions ->
-            val snapshot = runBlocking {
-                FirebaseDatabase.getInstance()
-                    .getReference("$sn/Submissions/${submissions.submissionId}")
-                    .get()
-                    .await()
+    val submissions: List<Pair<Submissions, String>> =
+        remember(hospitalName, submissionViewModel.createdSubmissions) {
+            val sn = hospitalName ?: return@remember emptyList()
+            submissionViewModel.createdSubmissions.flatMap { submissions ->
+                val snapshot = runBlocking {
+                    FirebaseDatabase.getInstance()
+                        .getReference("$sn/Submissions/${submissions.submissionId}")
+                        .get()
+                        .await()
+                }
+                snapshot.children
+                    // only children that have a “submittedfile” property get through
+                    .filter { ds -> ds.hasChild("submittedfile") }
+                    .mapNotNull { it.key }           // now these are true student usernames
+                    .map { userName -> submissions to userName }
             }
-            snapshot.children
-                // only children that have a “submittedfile” property get through
-                .filter { ds -> ds.hasChild("submittedfile") }
-                .mapNotNull { it.key }           // now these are true student usernames
-                .map { userName -> submissions to userName }
         }
-    }
 
     Scaffold(
         topBar = {
@@ -89,9 +90,9 @@ fun ManageSubmissions(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor        = Blue80,
-                    titleContentColor     = Color.White,
-                    actionIconContentColor= Color.White
+                    containerColor = Blue80,
+                    titleContentColor = Color.White,
+                    actionIconContentColor = Color.White
                 )
             )
         }
@@ -171,7 +172,7 @@ fun ManageSubmissions(
 
                     },
 
-                )
+                    )
             }
         }
 
@@ -179,11 +180,11 @@ fun ManageSubmissions(
         if (selectedSubmission != null && selectedUserName != null && hospitalName != null) {
             UploadResultsDialog(
                 fileUrlInitial = "",
-                hospitalName   = hospitalName!!,
-                submissionId   = selectedSubmission!!.submissionId,
-                userName       = selectedUserName!!,
-                authViewModel  = authViewModel,
-                context        = context
+                hospitalName = hospitalName!!,
+                submissionId = selectedSubmission!!.submissionId,
+                userName = selectedUserName!!,
+                authViewModel = authViewModel,
+                context = context
             ) {
                 selectedSubmission = null
                 selectedUserName = null

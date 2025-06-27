@@ -38,34 +38,28 @@ fun PatientDashboard(navController: NavHostController, UserAuthViewModel: UserAu
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "Patient Dashboard",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
-                },
-                actions = {
-                    IconButton(onClick = { navController.navigate(ROUT_MANAGE_PATIENT_ACCOUNT)}) {
-                        Icon(Icons.Default.AccountCircle, contentDescription = "Manage Account")
-                    }
-                    IconButton(onClick = { navController.navigate(ROUT_ABOUT) }) {
-                        Icon(Icons.Default.Info, contentDescription = "About")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF673AB7),
-                    titleContentColor = Color.White,
-                    navigationIconContentColor = Color.White,
-                    actionIconContentColor = Color.White
+                Text(
+                    text = "Patient Dashboard", fontWeight = FontWeight.Bold, fontSize = 20.sp
                 )
+            }, actions = {
+                IconButton(onClick = { navController.navigate(ROUT_MANAGE_PATIENT_ACCOUNT) }) {
+                    Icon(Icons.Default.AccountCircle, contentDescription = "Manage Account")
+                }
+                IconButton(onClick = { navController.navigate(ROUT_ABOUT) }) {
+                    Icon(Icons.Default.Info, contentDescription = "About")
+                }
+            }, colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Color(0xFF673AB7),
+                titleContentColor = Color.White,
+                navigationIconContentColor = Color.White,
+                actionIconContentColor = Color.White
             )
-        }
-    ) { paddingValues ->
+            )
+        }) { paddingValues ->
         Column(
             modifier = Modifier
                 .paint(
-                    painter = painterResource(R.drawable.img2),
-                    contentScale = ContentScale.Crop
+                    painter = painterResource(R.drawable.img2), contentScale = ContentScale.Crop
                 )
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -84,17 +78,17 @@ fun PatientDashboard(navController: NavHostController, UserAuthViewModel: UserAu
             DashboardCard(
                 title1 = "CURRENT",
                 description1 = "Access your current assignments",
-                onClick = {navController.navigate(ROUT_PATIENT_CURRENT_SUBMISSIONS)},
+                onClick = { navController.navigate(ROUT_PATIENT_CURRENT_SUBMISSIONS) },
             )
             DashboardCard(
                 title1 = "RESULTS",
                 description1 = "Obtain your assignments results",
-                onClick = {navController.navigate(ROUT_PATIENT_CURRENT_RESULTS)},
+                onClick = { navController.navigate(ROUT_PATIENT_CURRENT_RESULTS) },
             )
             DashboardCard(
                 title1 = "REVISION",
                 description1 = "Review on all assignments",
-                onClick = {navController.navigate(ROUT_ACCESS_ALL_SUBMISSIONS)},
+                onClick = { navController.navigate(ROUT_ACCESS_ALL_SUBMISSIONS) },
             )
 
         }

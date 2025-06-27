@@ -52,7 +52,7 @@ fun LoginScreen(
     Column(
         modifier = Modifier
             .paint(
-                painter = painterResource(R.drawable.img),
+                painter = painterResource(R.drawable.img2),
                 contentScale = ContentScale.Crop
             )
 

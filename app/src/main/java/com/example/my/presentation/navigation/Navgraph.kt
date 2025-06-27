@@ -36,18 +36,17 @@ import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun NavGraph(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_SPLASH
-) {
-    val context = LocalContext.current
 
+) {
+    val navController = rememberNavController()
+    val startDestination = ROUT_SPLASH
+
+    val context = LocalContext.current
     // Initialize your shared ViewModels only once and remember them
     val authViewModel = remember { UserAuthViewModel(navController, context) }
     val hospitalAuthViewModel = remember { HospitalAuthViewModel(navController, context) }
-    val submissionViewModel = remember { SubmissionViewModel(navController, context, authViewModel) }
-
-
+    val submissionViewModel =
+        remember { SubmissionViewModel(navController, context, authViewModel) }
     val currentUser = FirebaseAuth.getInstance().currentUser
 
     // Navigate to login if not logged in already on launch
@@ -58,11 +57,9 @@ fun NavGraph(
             }
         }
     }
-
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = modifier
     ) {
         composable(ROUT_SPLASH) {
             SplashScreen(navController)
@@ -91,21 +88,24 @@ fun NavGraph(
         }
         composable(ROUT_PATIENT_CURRENT_SUBMISSIONS) {
             CurrentSubmission(
-                navController,submissionViewModel,authViewModel)
+                navController, submissionViewModel, authViewModel
+            )
         }
         composable(ROUT_PATIENT_CURRENT_RESULTS) {
             Results(
-                navController,submissionViewModel)
+                navController, submissionViewModel
+            )
         }
         composable(ROUT_ACCESS_ALL_SUBMISSIONS) {
             AccessAllSubmissions(
-                navController,submissionViewModel,authViewModel)
+                navController, submissionViewModel, authViewModel
+            )
         }
         composable(ROUT_DOCTOR_DASHBOARD) {
             DoctorDashboard(navController, authViewModel)
         }
         composable(ROUT_DOCTOR_CREATE_RESULTS) {
-            CreateSubmission(navController,submissionViewModel,authViewModel)
+            CreateSubmission(navController, submissionViewModel, authViewModel)
         }
         composable(ROUT_DOCTOR_UPDATE_RESULTS) {
             val resultToEdit = navController
@@ -115,29 +115,29 @@ fun NavGraph(
 
             // Pass it into the composable
             UpdateResult(
-                navController         =navController,
-                SubmissionViewModel   =submissionViewModel,
-                userAuthViewModel     =authViewModel,
-                ResultToEdit          =resultToEdit
+                navController = navController,
+                SubmissionViewModel = submissionViewModel,
+                userAuthViewModel = authViewModel,
+                ResultToEdit = resultToEdit
 
 
             )
         }
 
         composable(ROUT_DOCTOR_MANAGE_SUBMISSIONS) {
-            ManageSubmissions(navController,submissionViewModel,authViewModel)
+            ManageSubmissions(navController, submissionViewModel, authViewModel)
         }
         composable(ROUT_DOCTOR_MANAGE_RESULTS) {
-            ManageCreatedResults(navController,submissionViewModel,authViewModel)
+            ManageCreatedResults(navController, submissionViewModel, authViewModel)
         }
         composable(ROUT_ABOUT) {
             About(navController)
         }
         composable(ROUT_MANAGE_HOSPITAL_ACCOUNT) {
-            ManageHospitalAccount(navController,authViewModel,hospitalAuthViewModel)
+            ManageHospitalAccount(navController, authViewModel, hospitalAuthViewModel)
         }
         composable(ROUT_MANAGE_PATIENT_ACCOUNT) {
-            ManagePatientAccount(navController, authViewModel ,hospitalAuthViewModel)
+            ManagePatientAccount(navController, authViewModel, hospitalAuthViewModel)
         }
 
     }

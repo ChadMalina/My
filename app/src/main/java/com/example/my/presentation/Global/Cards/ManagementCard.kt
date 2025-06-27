@@ -29,12 +29,14 @@ fun ManagementCard(
             .height(150.dp)
             .clickable { onClick() }
             .border(3.dp, Teal80, shape = RoundedCornerShape(20.dp)),
-        colors = CardDefaults.cardColors(containerColor = Color(
-            red = 255,
-            green = 255,
-            blue = 255,
-            alpha = 143
-        ),),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(
+                red = 255,
+                green = 255,
+                blue = 255,
+                alpha = 143
+            ),
+        ),
 
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(8.dp)
@@ -53,7 +55,7 @@ fun ManagementCard(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = submission.createdTime, fontSize = 16.sp,color = Color.Gray)
+                    Text(text = submission.createdTime, fontSize = 16.sp, color = Color.Gray)
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -73,8 +75,8 @@ fun ManagementCard(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = "By: ${submission.doctor}", fontSize = 16.sp,color = Color.Black)
-                    Text(text = submission.divisionName, fontSize = 16.sp,color = Color.Black)
+                    Text(text = "By: ${submission.doctor}", fontSize = 16.sp, color = Color.Black)
+                    Text(text = submission.divisionName, fontSize = 16.sp, color = Color.Black)
                 }
             }
         }

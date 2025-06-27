@@ -62,18 +62,16 @@ fun UpdateResult(
         topBar = {
             TopAppBar(
                 title = {
-                    Text("Update Assignments", fontWeight = FontWeight.Bold)
-                },
-                actions = {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.Close, contentDescription = "Close")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Green80,
-                    titleContentColor = Color.White,
-                    actionIconContentColor = Color.White
-                )
+                Text("Update Assignments", fontWeight = FontWeight.Bold)
+            }, actions = {
+                IconButton(onClick = { navController.popBackStack() }) {
+                    Icon(Icons.Default.Close, contentDescription = "Close")
+                }
+            }, colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Green80,
+                titleContentColor = Color.White,
+                actionIconContentColor = Color.White
+            )
             )
         }
 
@@ -81,8 +79,7 @@ fun UpdateResult(
         Column(
             modifier = Modifier
                 .paint(
-                    painter = painterResource(R.drawable.img2),
-                    contentScale = ContentScale.Crop
+                    painter = painterResource(R.drawable.img2), contentScale = ContentScale.Crop
                 )
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -123,7 +120,11 @@ fun UpdateResult(
                     value = submissiontitle,
                     onValueChange = { submissiontitle = it },
                     label = { Text("Title") },
-                    leadingIcon = { Icon(Icons.Default.KeyboardArrowUp, contentDescription = null) },
+                    leadingIcon = {
+                        Icon(
+                            Icons.Default.KeyboardArrowUp, contentDescription = null
+                        )
+                    },
                     colors = OutlinedTextFieldDefaults.colors(
                         unfocusedContainerColor = backgroundColor,
                         focusedContainerColor = backgroundColor
@@ -161,18 +162,14 @@ fun UpdateResult(
                 )
 
                 Text(
-                    text = "The URL you are going to paste above is the link to the submission" +
-                            " which you have uploaded to a third - party app or website." +
-                            " An example is the link generated for public file sharing in cloud services like Google Drive when you choose to share an uploaded file." +
-                            " NOTE: The URL must start with https://",
+                    text = "The URL you are going to paste above is the link to the submission" + " which you have uploaded to a third - party app or website." + " An example is the link generated for public file sharing in cloud services like Google Drive when you choose to share an uploaded file." + " NOTE: The URL must start with https://",
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     color = Color(red = 103, green = 58, blue = 183, alpha = 255),
                     modifier = Modifier
                         .background(
-                            color = Color.White.copy(alpha = 0.5f),
-                            shape = RoundedCornerShape(8.dp)
+                            color = Color.White.copy(alpha = 0.5f), shape = RoundedCornerShape(8.dp)
                         )
                         .fillMaxWidth()
                         .padding(start = 20.dp, end = 20.dp),
@@ -192,7 +189,7 @@ fun UpdateResult(
 
 
                     Button(
-                        onClick =  {
+                        onClick = {
                             Submissions.submissionId.let { submissionId ->
                                 SubmissionViewModel.updateSubmission(
                                     submissionId = submissionId,
@@ -200,19 +197,19 @@ fun UpdateResult(
                                     title = submissiontitle,
                                     description = submissiondescription,
                                     fileURL = fileURL,
-                                    onSuccess   = {
+                                    onSuccess = {
                                         // go back to ManageCreatedAssignments
                                         navController.popBackStack()
                                     },
-                                    onError  = { e ->
-                                        Toast.makeText(context,
+                                    onError = { e ->
+                                        Toast.makeText(
+                                            context,
                                             "Failed to update: ${e.message}",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                    }                                )
+                                    })
                             }
-                        },
-                        modifier = Modifier.fillMaxWidth()
+                        }, modifier = Modifier.fillMaxWidth()
                     ) {
                         Text("Update Result")
                     }

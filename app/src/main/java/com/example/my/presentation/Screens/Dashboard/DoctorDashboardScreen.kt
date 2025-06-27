@@ -38,12 +38,10 @@ import com.example.my.presentation.navigation.ROUT_DOCTOR_MANAGE_RESULTS
 import com.example.my.presentation.navigation.ROUT_DOCTOR_MANAGE_SUBMISSIONS
 
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DoctorDashboard(
-    navController: NavHostController,
-    userAuthViewModel: UserAuthViewModel
+    navController: NavHostController, userAuthViewModel: UserAuthViewModel
 ) {
 
     val user = userAuthViewModel._currentUserData.value
@@ -54,33 +52,28 @@ fun DoctorDashboard(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "Doctor Dashboard",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
-                },
-                actions = {
-                    IconButton(onClick = { navController.navigate(ROUT_MANAGE_PATIENT_ACCOUNT)}) {
-                        Icon(Icons.Default.AccountCircle, contentDescription = "Manage Account")
-                    }
-                    IconButton(onClick = { navController.navigate(ROUT_ABOUT) }) {
-                        Icon(Icons.Default.Info, contentDescription = "About")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF673AB7),
-                    titleContentColor = Color.White,
-                    navigationIconContentColor = Color.White,
-                    actionIconContentColor = Color.White
+                Text(
+                    text = "Doctor Dashboard", fontWeight = FontWeight.Bold, fontSize = 20.sp
                 )
-            )        }
-    ) { paddingValues ->
+            }, actions = {
+                IconButton(onClick = { navController.navigate(ROUT_MANAGE_PATIENT_ACCOUNT) }) {
+                    Icon(Icons.Default.AccountCircle, contentDescription = "Manage Account")
+                }
+                IconButton(onClick = { navController.navigate(ROUT_ABOUT) }) {
+                    Icon(Icons.Default.Info, contentDescription = "About")
+                }
+            }, colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Color(0xFF673AB7),
+                titleContentColor = Color.White,
+                navigationIconContentColor = Color.White,
+                actionIconContentColor = Color.White
+            )
+            )
+        }) { paddingValues ->
         Column(
             modifier = Modifier
                 .paint(
-                    painter = painterResource(R.drawable.img2),
-                    contentScale = ContentScale.Crop
+                    painter = painterResource(R.drawable.img2), contentScale = ContentScale.Crop
                 )
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -99,22 +92,22 @@ fun DoctorDashboard(
             DashboardCard(
                 title1 = "NEW",
                 description1 = "Create new results",
-                onClick = {navController.navigate(ROUT_DOCTOR_CREATE_RESULTS)},
+                onClick = { navController.navigate(ROUT_DOCTOR_CREATE_RESULTS) },
             )
             DashboardCard(
                 title1 = "EDIT",
                 description1 = "Manage uploaded results",
-                onClick = {navController.navigate(ROUT_DOCTOR_MANAGE_SUBMISSIONS)},
+                onClick = { navController.navigate(ROUT_DOCTOR_MANAGE_SUBMISSIONS) },
             )
             DashboardCard(
                 title1 = "MANAGE",
                 description1 = "Manage students' submitted submissions",
-                onClick = {navController.navigate(ROUT_DOCTOR_MANAGE_RESULTS)},
+                onClick = { navController.navigate(ROUT_DOCTOR_MANAGE_RESULTS) },
             )
             DashboardCard(
                 title1 = "REVISION",
                 description1 = "Access all uploaded submissions",
-                onClick = {navController.navigate(ROUT_ACCESS_ALL_SUBMISSIONS)},
+                onClick = { navController.navigate(ROUT_ACCESS_ALL_SUBMISSIONS) },
             )
 
         }
