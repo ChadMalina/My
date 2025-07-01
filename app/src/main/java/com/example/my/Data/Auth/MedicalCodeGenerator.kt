@@ -12,14 +12,14 @@ object MedicalCodeGenerator {
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     fun generateMedicalCode(onCodeGenerated: (String) -> Unit) {
-        var MedicalCode: String
+        var medicalCode: String
         do {
             // Generate a new school code
-            MedicalCode = generateRandomMedicalCode()
-        } while (isCodeExists(MedicalCode)) // Keep generating until the code does not exist
+            medicalCode = generateRandomMedicalCode()
+        } while (isCodeExists(medicalCode)) // Keep generating until the code does not exist
 
         // Return the unique code through the callback
-        onCodeGenerated(MedicalCode)
+        onCodeGenerated(medicalCode)
     }
 
     private fun generateRandomMedicalCode(): String {
@@ -34,12 +34,12 @@ object MedicalCodeGenerator {
         return CODE_PREFIX + digits + letters
     }
 
-    private fun isCodeExists(schoolCode: String): Boolean {
+    private fun isCodeExists(medicalcode: String): Boolean {
         // Check if the generated school code exists in Firebase
         var exists = false
         database.root
             .orderByChild("info/medicalCode")
-            .equalTo(schoolCode).get()
+            .equalTo(medicalcode).get()
             .addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
                     exists = true
